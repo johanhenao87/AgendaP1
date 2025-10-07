@@ -36,8 +36,10 @@ El sistema combina un frontend Next.js 15 (App Router) y un backend basado en ru
 
 ## Respaldo y continuidad
 - Backups automáticos usando `pg_dump` y posible integración con `restic`.
-- Scripts de `deploy/scripts/backup.sh` y `restore.sh` para recuperación rápida.
+- Planificado: Scripts de `deploy/scripts/backup.sh` y `restore.sh` para recuperación rápida.
 - Estrategia de retención 30/90 días y pruebas periódicas de restauración.
+
+> **Nota:** Los scripts `deploy/scripts/backup.sh` y `deploy/scripts/restore.sh` aún no forman parte del repositorio y serán incorporados en entregables futuros.
 
 ## Roadmap técnico
 - Implementar SSO corporativo (Azure AD/Keycloak).

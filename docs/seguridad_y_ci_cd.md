@@ -22,9 +22,11 @@
 5. **Post-deploy:** ejecutar migraciones (`prisma migrate deploy`) y healthcheck.
 
 ## Infraestructura como código
-- Archivos en `deploy/` incluyen `docker-compose.yml`, `Caddyfile` y scripts.
-- Scripts `backup.sh` / `restore.sh` para administración de base de datos.
+- Planificado: Archivos en `deploy/` incluirán `docker-compose.yml`, `Caddyfile` y scripts.
+- Planificado: Scripts `backup.sh` / `restore.sh` para administración de base de datos.
 - Variables sensibles se administran vía `.env` cifrado o secrets del proveedor.
+
+> **Nota:** Los archivos `deploy/docker-compose.yml`, `deploy/Caddyfile`, `deploy/scripts/backup.sh` y `deploy/scripts/restore.sh` aún no existen en el repositorio actual y se entregarán en un hito posterior.
 
 ## Checklist previo a go-live
 - Todas las rutas sirviéndose bajo HTTPS.

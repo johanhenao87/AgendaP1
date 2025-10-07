@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-slate-950 text-slate-100 antialiased;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+a {
+  @apply text-brand-400 underline-offset-2 transition-colors hover:text-brand-300;
+}
+
+main {
+  @apply min-h-screen;
+}
+
+.input {
+  @apply h-11 w-full rounded-2xl border border-white/10 bg-slate-900/60 px-4 text-sm text-slate-100 outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-500/40;
+}
