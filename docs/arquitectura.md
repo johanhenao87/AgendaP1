@@ -4,35 +4,28 @@
 El sistema combina un frontend Next.js 15 (App Router) y un backend basado en rutas API y server actions para procesar la lógica de agendamiento. Se priorizan componentes de servidor para listados extensos, mientras que formularios y dashboards funcionan como componentes cliente con React Query para mutaciones y revalidaciones.
 
 ## Frontend
-- **Tecnologías:** React 19 con TypeScript, TailwindCSS, shadcn/ui, Framer Motion para microinteracciones, i18next para internacionalización ES/EN.
-- **Estructura:** módulos funcionales en `features/` (turnos, reglas, admin, user) respaldados por componentes reutilizables en `components/` y utilidades compartidas en `lib/`.
-- **Estado y datos:** React Query gestiona caché y sincronización tras mutaciones; formularios usan React Hook Form + Zod.
-- **UX adicional:** tema claro/oscuro, soporte mobile-first, accesibilidad AA y loaders skeleton con shimmer.
+- **Tecnologías:** React 19 con TypeScript y Tailwind CSS ejecutándose en Next.js 15 (App Router).
+- **Estructura:** vistas agrupadas en la carpeta `app/` (`(public)` para flujo de conductor, `(app)` para paneles) y componentes reutilizables en `components/`. Datos simulados y utilidades viven en `lib/`.
+- **Estado y datos:** Se utiliza un contexto propio para idioma y toasts. React Query está configurado pero actualmente solo como base para futuras integraciones de datos en tiempo real.
+- **UX adicional:** Tema claro/oscuro, selector ES/EN, skeleton loaders básicos y animación de confeti en la confirmación de turno.
 
 ## Backend
-- **Framework:** Next.js API Routes y server actions.
-- **Persistencia:** Prisma ORM conectado a PostgreSQL 15 con migraciones versionadas.
-- **Validaciones:** Zod para contratos; motor de reglas configurable con acciones `RECHAZAR`, `PRIORIZAR` o `WARN`.
-- **Colas y jobs:** BullMQ con Redis para notificaciones, recordatorios y procesamientos diferidos.
-- **Integraciones:** webhooks hacia sistemas externos (Power Automate, ERP), servicio WhatsApp Business API, SMTP para email y generación de PDFs/QR.
+- **Estado actual:** Solo se expone el endpoint `/api/health` para monitoreo. El resto de interacciones se simula en el cliente.
+- **Plan futuro:** Incorporar rutas API y server actions respaldadas por una base de datos relacional (PostgreSQL/Prisma) y validaciones con Zod.
+- **Integraciones planificadas:** Motor de reglas, colas BullMQ con Redis y conectores externos (WhatsApp, correo, webhooks) se documentan como próximos hitos.
 
 ## Infraestructura
-- **Contenedores:** Docker Compose orquesta servicios (app, PostgreSQL, Redis, Caddy).
-- **Reverse proxy:** Caddy con certificados SSL automáticos.
-- **Despliegue:** VPS Ubuntu 24.04; pipeline CI/CD en GitHub Actions con lint, tests y build antes de desplegar.
-- **Escalabilidad:** posibilidad de separar workers BullMQ y habilitar CDN para assets.
+- **Entorno de desarrollo:** Ejecución local mediante `npm run dev`.
+- **Planificado:** Docker Compose para app + base de datos + Redis, proxy inverso con Caddy y despliegue en VPS mediante GitHub Actions.
+- **Escalabilidad prevista:** Separar futuros workers de colas y habilitar CDN para assets estáticos.
 
 ## Observabilidad y monitoreo
-- Logging estructurado con `pino` y formateo local `pino-pretty`.
-- OpenTelemetry para traces y métricas.
-- Sentry captura errores front y backend.
-- Healthchecks expuestos para monitoreo externo y alertas vía email/Telegram.
+- **Actual:** Consola del navegador y el healthcheck `/api/health`.
+- **Próximo hito:** Incorporar logging estructurado (pino), trazas con OpenTelemetry y alertas con Sentry/Healthchecks.
 
 ## Seguridad
-- Autenticación con Auth.js/NextAuth (credenciales y SSO corporativo opcional) y soporte 2FA.
-- Rate limiting con Redis, headers de seguridad (Helmet) y CORS configurado.
-- Auditoría con registros de usuario, IP, acción y cambios.
-- Cifrado en reposo para datos sensibles y política de backups verificados.
+- **Actual:** Flujo demo sin autenticación ni almacenamiento real.
+- **Planificado:** Auth.js/NextAuth con SSO corporativo opcional, rate limiting en Redis y auditoría detallada al incorporar persistencia.
 
 ## Respaldo y continuidad
 - Backups automáticos usando `pg_dump` y posible integración con `restic`.

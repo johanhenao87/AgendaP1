@@ -1,5 +1,7 @@
 # Lineamientos UI/UX
 
+> **Estado actual:** La interfaz implementada cubre una versión simplificada de estos lineamientos con componentes propios y datos simulados. Los elementos descritos que aún no aparecen en la demo (por ejemplo, microinteracciones avanzadas) se mantienen como guía de diseño futura.
+
 ## Principios de diseño
 - Estilo profesional y artístico con modo claro/oscuro y paletas alternativas.
 - Enfoque mobile-first para conductores, con layouts responsive para planners.

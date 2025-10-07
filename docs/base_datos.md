@@ -1,5 +1,7 @@
 # Modelo de datos (PostgreSQL + Prisma)
 
+> **Estado actual:** La demo no persiste datos; el modelo descrito a continuación corresponde al diseño planificado para la primera versión con base de datos real.
+
 ## Enums principales
 - `Idioma`: `ES`, `EN`.
 - `TemaUI`: `SYSTEM`, `LIGHT`, `DARK`.

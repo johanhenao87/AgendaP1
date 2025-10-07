@@ -1,5 +1,7 @@
 # Manual de usuario
 
+> **Nota:** Este manual describe el comportamiento objetivo del sistema. La versión actual del repositorio ofrece una demo navegable con datos simulados y sin autenticación real.
+
 ## Introducción
 La plataforma permite agendar turnos de ingreso a planta, gestionar documentación y monitorear el estado de atención. Existen dos perfiles principales: usuarios externos (conductores/empresas) y personal interno (planners, operativos, guardias).
 

@@ -1,7 +1,9 @@
 # API y casos de uso
 
+> **Estado actual:** La aplicación expone únicamente `/api/health` como endpoint real; el resto de la API descrita a continuación forma parte del diseño previsto para próximas iteraciones.
+
 ## Principios generales
-- Todas las entradas se validan con Zod y devuelven errores explícitos.
+- Todas las entradas se validarán con Zod y devolverán errores explícitos.
 - Autenticación vía Auth.js con JWT; scopes RBAC (`admin`, `planner`, `operativo`, `guardia`, `usuario`).
 - Respuestas JSON con metadatos de auditoría y enlaces de navegación.
 - Rate limiting y logging de auditoría en cada mutación.

@@ -1,5 +1,7 @@
 # Motor de reglas y KPIs
 
+> **Estado actual:** Las reglas y métricas se representan en la interfaz con datos simulados. Este documento captura cómo se implementarán cuando exista backend conectado.
+
 ## Motor de reglas
 - Se configura por planta con prioridad (`prioridad` numérica) y vigencia (`vigencia_desde`, `vigencia_hasta`).
 - Tipos soportados:
