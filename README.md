@@ -1,61 +1,51 @@
 # Agendamiento Planta 1
 
 ## 🧭 Propósito
-Sistema web integral para gestionar el agendamiento de turnos de vehículos en planta. Permite a conductores y planners coordinar cupos, validar documentos, monitorear estados en tiempo real y analizar KPIs operativos.
+Sistema web integral para gestionar el agendamiento de turnos de vehículos en planta. Permite a conductores y planners coordinar
+cupos, validar documentos, monitorear estados en tiempo real y analizar KPIs operativos.
 
-## ⚙️ Tecnologías propuestas
-- **Frontend:** Next.js 15, React 19, TypeScript, TailwindCSS, shadcn/ui, Framer Motion, React Query, i18next.
-- **Backend:** Next.js API Routes, Prisma ORM, Zod, BullMQ (Redis) para colas, Webhooks.
-- **Infraestructura:** PostgreSQL 15, Redis, Docker Compose, Caddy como reverse proxy, OpenTelemetry, Sentry.
+## ⚙️ Tecnologías
+- **Frontend y backend**: Next.js 15 (App Router), React 19, TypeScript.
+- **UI**: Tailwind CSS, componentes propios inspirados en shadcn/ui.
+- **Estado y validaciones**: React Query (planificado), Zod/Prisma (planificado).
 
-## 🧱 Módulos clave
-1. Panel de usuario (creación, consulta, cancelación y reprogramación de turnos).
-2. Panel de administración con agenda en tiempo real, reglas y asignación de muelles.
-3. Motor de reglas dinámico con validaciones y priorizaciones.
-4. Gestión documental y validaciones automáticas.
-5. Sistema de notificaciones multicanal (WhatsApp, email, SMS opcional).
-6. KPIs y simulador de capacidad para análisis operativo.
+## 🧱 Módulos incluidos
+- Landing pública con resumen funcional.
+- Flujo demo de creación de turno para conductores (slot grid, autocompletado y confeti de confirmación).
+- Panel simulado para planners con tabla viva, cancelación con tolerancia y tablero drag & drop de muelles.
+- Vista de KPIs con filtros, heatmap, gráficos (pie y línea) y simulador visual de capacidad.
+- Endpoint de salud (`/api/health`) para monitoreo básico.
+- Toggle de tema claro/oscuro, selector ES/EN y sistema de toasts accesibles.
 
-## 🚀 Instalación rápida
-```bash
-git clone https://github.com/yumatech/agendamiento.git
-cd agendamiento
-cp .env.example .env
-docker compose up -d --build
-```
+> ℹ️ La lógica de negocio, persistencia y autenticación están representadas con datos simulados. Los módulos de API real, reglas dinámicas y colas se integrarán en siguientes iteraciones.
 
-### Desarrollo local
+## 🚀 Puesta en marcha
 ```bash
 npm install
 npm run dev
 ```
 
-### Pruebas y mantenimiento
-- `npm run test` — pruebas unitarias y E2E.
-- `npx prisma migrate deploy` — aplicar migraciones.
-- `npx prisma studio` — inspección de datos.
+Visita `http://localhost:3000` para explorar la interfaz demo.
 
-## 👤 Acceso demo
-- Usuario: `admin@demo.com`
-- Contraseña: `Admin123!`
+### Scripts disponibles
+- `npm run dev` — Ejecuta el entorno de desarrollo.
+- `npm run build` — Genera la build de producción.
+- `npm run start` — Sirve la build generada.
+- `npm run lint` — Ejecuta ESLint.
+- `npm run typecheck` — Verifica tipos TypeScript sin emitir artefactos.
 
-## 📁 Estructura propuesta del repositorio
+## 📁 Estructura del repositorio
 ```
-agendamiento/
-├── app/                     # Next.js (App Router + API)
-│   ├── app/                 # layouts, rutas públicas e internas
-│   ├── components/          # UI shadcn + componentes propios
-│   ├── features/            # módulos: turnos, reglas, admin, user
-│   ├── lib/                 # contratos, hooks, helpers, cliente API
-│   ├── server/              # servicios Prisma, reglas, colas
-│   ├── prisma/              # esquema y migraciones
-│   ├── public/              # assets estáticos
-│   └── tests/               # pruebas unitarias y E2E
-├── deploy/                  # infraestructura (docker, caddy, scripts)
-├── docs/                    # documentación funcional y técnica
-├── .env.example
-├── package.json
-└── README.md
+app/
+├── (app)/               # Áreas autenticadas (panel y KPIs)
+├── (public)/            # Flujo demo para conductores
+├── api/                 # Rutas serverless (healthcheck)
+├── layout.tsx           # Layout raíz
+└── page.tsx             # Landing principal
+components/              # UI reutilizable
+lib/                     # Utilidades y datos simulados
+public/                  # Assets estáticos (pendiente)
+docs/                    # Documentación técnica y funcional existente
 ```
 
 ## 📚 Documentación disponible
@@ -69,17 +59,15 @@ agendamiento/
 
 ## ✅ Checklist de entrega
 - Documentación funcional y técnica.
-- Esquema de base de datos y migraciones.
-- API y casos de uso principales.
-- UI/UX detallado con flujos clave.
-- Módulo de KPIs y simulador documentado.
-- Docker + CI/CD descritos.
-- Manual técnico y de usuario.
-- Seguridad, respaldos y monitoreo cubiertos.
+- UI navegable para los módulos clave descritos.
+- Simulación de turnos, reglas, KPIs y estados vacíos en la interfaz.
+- Scripts de desarrollo y build configurados.
+- Endpoint de salud listo para integraciones de monitoreo.
+- Páginas de error (404/500) y temas listo para producción.
 
 ## 🔭 Próximos pasos sugeridos
-- Integrar SSO corporativo (Azure AD / Keycloak).
-- Añadir permisos granulares por scopes.
-- Extender simulador con predicciones (Prophet).
-- Exponer API externa REST/GraphQL con OpenAPI.
-- Integrar con Power BI / Power Automate para reportes.
+- Conectar la app con una base de datos real y Prisma ORM.
+- Integrar autenticación corporativa (Azure AD / Keycloak).
+- Añadir motor de reglas dinámico y colas BullMQ.
+- Implementar API pública documentada con OpenAPI.
+- Automatizar despliegue con Docker, Caddy y pipelines CI/CD.
